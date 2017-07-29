@@ -1,0 +1,74 @@
+Github, git note
+
+>> Create repository <<
+git init <directory>  OR  /directory$ git init //สำหรับสร้าง repository ในแก่ directory นั้นๆ
+git clone <repository path> <directory> // clone มาใส่ใน directory
+git clone <repository path> // clone มาทั้ง directory
+
+
+
+>> Configuration <<
+git config --global user.name peeratat // กำหนด username ชื่อ peeratat โดย --global คือให้ใช้ config กับทุกๆ repository ในเครื่อง
+git config --global user.email peeratat1995@gmail.com //กำ useremail ว่า peeratat1995@gmail
+
+touch .gitignore //สร้างไฟล์ .gitignore ในตำแหน่ง root directory เพื่อให้ git ไม่ต้องสนใจไฟล์เหล่านี้
+<<<ในไฟล์ .gitignore>>>
+fileName.js
+*.png
+*.jpg
+
+
+
+>> Save to repository <<
+git add <file1> <file2> ... <fileN> // ทำการ tracking และ staging ไฟล์แต่ละไฟล์ กี่ไฟล์ก็ได้แล้วแต่เราลงใน repository
+git add -u // ทำการ  staging ไฟล์ทุกๆไฟล์ที่ tracked อยู่แล้ว
+git add -A // ทำการ tracking และ staging ไฟล์ทุกๆไฟล์ ยกเว้นไฟล์ที่ถูกignore
+git add . // staging ทุกไฟล์ที่มีการเปลี่ยนแปลง
+git rm <file> // delete and untrack file
+git rm --cached <file> // untrack file
+git reset <file> // unstage file
+
+git commit -m "note" // snapshot ไฟล์ทุกไฟล์ที่อยู่ใน index ( อยู่ในสถานะ staged)
+git commit -a -m "note" === git add -u && git commit -m "note" 
+
+
+
+>> Log and Status <<
+git log  // โชว์ checksum, date, note ของการ commit ก่อนหน้านี้
+git status // โชว์ status ของไฟล์ต่างๆ (   ไม่รวมที่ ingnore )
+git diff HEAD
+
+
+
+>> Read old commit <<
+git checkout <commit> // ย้อนกลับไปที่ commit ที่ต้องการ แต่ถ้าหากแก้ไขแล้ว commit ณ ตำแหน่งนั้นจะเป็นการแตก branch
+	<commit> : checksum(6+), HEAD( commit ล่าสุด ), HEAD~2 ( commit อันที่2ก่อนล่าสุด )
+git checkout master // กลับไปที่ branch master
+git checkout <commit> <file> // ย้อนกลับไปที่ commit ที่ต้องการแบบแยกไฟล์ ถ้าหากแก้ไขแล้ว commit ณ ตำแหน่งนั้นจะไม่แตก branch แต่ถือว่าเป็น commit ใหม่ของ branch ปัจจุบันเลย
+
+
+
+>> Undo <<
+git revert <commit> // ทำการ commit โดยยกเลิก commit <commit> ( ยกเลิก commit ที่มีอยู่ใน branch ปัจจุบัน แล้วก้าวเข้าสู่ commit ใหม่)
+git reset --hard HEAD // ยกเลิกการเปลี่ยนแปลงทุกอย่างแล้วกลับไปที่ HEAD
+
+
+
+>> Branch <<
+git branch new-branch-name // create new branch
+git branch-name // veiw all branch
+git checkout new-branch-name // move to new-branch-name branch
+>> merge <<
+//on master branch
+git merge new-branch-name // merge new-branch-name to master branch
+git branch -d new-branch-name // delete new-branch-name branch
+
+
+
+>> Remote <<
+git remote add origin https://github.com/Rhapzody/git_tutorial.git // add remote-url name=origin=https://github.com/Rhapzody/git_tutorial.git
+git remote -v // view all remote-url
+git push origin master // push update to online repo. (origin=https://github.com/Rhapzody/git_tutorial.git, branch=master)
+git push -u origin master // push and save origin master >> can write only git push
+git pull origin master // update local repository from origin master
+

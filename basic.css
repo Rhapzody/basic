@@ -1,0 +1,127 @@
+/* colors
+    name >> red
+    RGB >> rgb(255,0,0)
+    GEX >> #ff0000
+*/
+/* Backgrounds */
+background {
+    background-color: green;
+    /*  default : transparent >> same parent element
+        custom : colors
+    */
+    background-image: url("image.png");
+    /* can use more than 1 as >> url(""), url(""), url("")
+        default : none
+        custom : url("")
+    */
+    background-repeat: no-repeat;
+    /* default : repeat >> repeat both X and Y
+       custom : repeat-x, repeat-y, no-repeat
+    */
+    background-position: right top;
+    /*  default : left top
+        custom : X% Y%, Xpx Ypx, center, top, bottom, left, right, letf bottom...
+        *when only top, bottom ->  horizontal is center
+        *when only left, right -> verticle is center
+    */
+    background-attachment: fixed;
+    /*  default : scroll >> bg move along with element
+        custom : fixed,
+                local >> bg move along with element's content
+    */
+    /* short */
+    background: bg-color bg-image position/bg-size bg-repeat 
+        bg-origin bg-clip bg-attachment initial or inherit;
+}
+
+/* Border */
+border {
+    
+    border-width: 1px;
+    /*  unit : px, pt, cm, em, etc
+        use : 1px 1px 1px 1px >> for each edges (top > right > bottom > left)
+                    1px 1px 1px >> for (top > left,right > bottom)
+                    1px 1px >> for (top,bottom > left,right)
+        default : 3px
+    */
+    border-style: solid;
+    /*  use : Same border-width!!!!
+        default : none
+        custom : dotted, dashed, solid, double, groove, ridge, inset, outset, hidden
+    */
+    border-color: red green blue;
+    /*  use : Same border-width!!!!
+        default : transparent
+        custom : colors
+        
+    */
+    border-radius: 10px;
+    /*  unit : %, px
+        use : Same border-width!!!! but start with left-top corner
+        default : 0    
+    */
+    /* short */
+    border: border-width border-style border-color;
+    /* use : for all edges 
+       *you can use only width | style | color | style color | width style >> UP TO YOU!!!
+    */
+    border-top: border-width border-style border-color;
+    border-right: border-width border-style border-color;
+    border-bottom: border-width border-style border-color;
+    border-left: border-width border-style border-color;
+    /* use : for specific edge 
+       *you can use SAME border:
+    */
+}
+
+/* Margin */
+/* vertical margin can collapse  */
+margin {
+    margin: 10px 10px 10px;
+    /*  unit : px, pt, cm, em, %, etc
+        use : 1px 1px 1px 1px >> for each edges (top > right > bottom > left)
+                    1px 1px 1px >> for (top > left,right > bottom)
+                    1px 1px >> for (top,bottom > left,right)
+    */
+    margin-top: 10xp;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    /* To horizontally center the element within its container. use */
+    margin: auto; 
+    margin: 10px auto;
+}
+
+/* Padding */
+padding {
+    padding: 10px 10px 5px;
+    /*  unit : px, pt, cm, em, %, etc
+        use : 1px 1px 1px 1px >> for each edges (top > right > bottom > left)
+                    1px 1px 1px >> for (top > left,right > bottom)
+                    1px 1px >> for (top,bottom > left,right)
+    */
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+
+/* Width and Height */
+width, height {
+    /* fixed */
+    width: 200px;
+    /* fixed min */
+    min-width: 200px;
+    /* fixed max */
+    max-width: 200px;
+    /* fixed */
+    height: 50px;
+    /* fixed min */
+    min-height: 50px;
+    /* fixed max */
+    max-height: 50px;
+    /*  unit :  px, pt, cm, em, %, etc
+        use : % of parent element
+            *not include padding margin border
+    */
+}
