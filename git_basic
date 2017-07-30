@@ -29,14 +29,18 @@ git rm --cached <file> // untrack file
 git reset <file> // unstage file
 
 git commit -m "note" // snapshot ไฟล์ทุกไฟล์ที่อยู่ใน index ( อยู่ในสถานะ staged)
+git commit --amend // แก้ไขcommitล่าสุดโดยรวมกับการเปลี่ยนแปลงล่าสุด
 git commit -a -m "note" === git add -u && git commit -m "note" 
 
 
 
->> Log and Status <<
+>> View <<
 git log  // โชว์ checksum, date, note ของการ commit ก่อนหน้านี้
+git log --oneline
 git status // โชว์ status ของไฟล์ต่างๆ (   ไม่รวมที่ ingnore )
-git diff HEAD
+git diff HEAD // ตรวจสอบความแตกต่างของปัจจุบันกับ HEAD
+git config --list // show config list
+git branch // view all branch
 
 
 
@@ -67,6 +71,7 @@ git branch -d new-branch-name // delete new-branch-name branch
 
 >> Remote <<
 git remote add origin https://github.com/Rhapzody/git_tutorial.git // add remote-url name=origin=https://github.com/Rhapzody/git_tutorial.git
+git remote set-url <remote-name> <remote-url>
 git remote -v // view all remote-url
 git push origin master // push update to online repo. (origin=https://github.com/Rhapzody/git_tutorial.git, branch=master)
 git push -u origin master // push and save origin master >> can write only git push
