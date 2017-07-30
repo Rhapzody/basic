@@ -41,6 +41,7 @@ git status // โชว์ status ของไฟล์ต่างๆ (   ไ�
 git diff HEAD // ตรวจสอบความแตกต่างของปัจจุบันกับ HEAD
 git config --list // show config list
 git branch // view all branch
+git remote -v // view all remote url
 
 
 
@@ -59,21 +60,18 @@ git reset --hard HEAD // ยกเลิกการเปลี่ยนแป�
 
 
 >> Branch <<
-git branch new-branch-name // create new branch
-git branch-name // veiw all branch
-git checkout new-branch-name // move to new-branch-name branch
+git branch <new-branch-name> // create new branch
+git checkout <branch-name> // move to new-branch-name branch
 >> merge <<
 //on master branch
-git merge new-branch-name // merge new-branch-name to master branch
-git branch -d new-branch-name // delete new-branch-name branch
+git merge <branch-name> // merge new-branch-name to master branch
+git branch -d <branch-name> // delete new-branch-name branch
 
 
 
 >> Remote <<
 git remote add origin https://github.com/Rhapzody/git_tutorial.git // add remote-url name=origin=https://github.com/Rhapzody/git_tutorial.git
 git remote set-url <remote-name> <remote-url>
-git remote -v // view all remote-url
 git push origin master // push update to online repo. (origin=https://github.com/Rhapzody/git_tutorial.git, branch=master)
 git push -u origin master // push and save origin master >> can write only git push
 git pull origin master // update local repository from origin master
-
