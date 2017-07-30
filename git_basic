@@ -59,13 +59,12 @@ git reset --hard HEAD // ยกเลิกการเปลี่ยนแป�
 
 
 >> Branch <<
-git branch new-branch-name // create new branch
-git branch-name // veiw all branch
-git checkout new-branch-name // move to new-branch-name branch
+git branch <new-branch-name> // create new branch
+git checkout <branch-name> // move to new-branch-name branch
 >> merge <<
 //on master branch
-git merge new-branch-name // merge new-branch-name to master branch
-git branch -d new-branch-name // delete new-branch-name branch
+git merge <branch-name> // merge new-branch-name to master branch
+git branch -d <branch-name> // delete new-branch-name branch
 
 
 
