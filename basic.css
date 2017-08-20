@@ -5,7 +5,7 @@
     margin: 0px;
     box-sizing: border-box;
     /* 
-        box model ประกอบด้วย content padding border ไม่รวม outline และ margin
+        box model ประกอบด้วย content padding border (ไม่รวม outline) และ margin
         ปกติ box-sizing : content-box; >> width & height จะหมายถึงส่วน content เท่านั้น
         แต่ box-sizing: border-box; >> width & height จะหมายถึง content+padding+border
     */
@@ -86,8 +86,33 @@ border {
     */ 
 }
 
+outline {
+    /* outine ไม่ส่งผลต่อขนาดของ box(NOT a part of element dimension) ขนาดของ outline จะไม่ส่งผลต่ออะไรทั้งนั้น!!! */
+    outline: red;
+    outline-style: dotted;
+    /* outline-style
+        default : none
+        custom : none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset|initial|inherit
+    */
+    outline-offset: 10px;
+    /* outline-ofset is space between border and outline DEFAULT is 0px */
+    outline-width: 10px;
+    /* outline-width is width of outline */
+    outline : outline-color outline-style (outline-width or initial or inherit);
+}
+
 /* Margin */
-/* vertical margin can collapse  */
+/* margin can collapse
+    For inline box
+    ในแนวตั้ง ไม่มีผล
+    ในแนวนอน มีผล, ไม่ทับซ้อนระหว่างพ่อลูก, ไม่ทับซ้อนระหว่างelement
+    For block box
+    ในแนวตั้ง มีผล, ทับซ้อนทั้ง พ่อ-ลูก และ element-element
+    ในแนวนอน มีผล, ไม่ทับซ้อนระหว่างพ่อลูก, ทับซ้อนระหว่างelement
+    **วิธีการแก้ไขการทับซ้อน
+        พ่อลูก: มีborder, มีpadding
+        element: เอาelementอื่นๆมาคั่น
+*/
 margin {
     margin: 10px 10px 10px;
     /*  unit : px, pt, cm, em, %, etc
@@ -104,7 +129,10 @@ margin {
     margin: 10px auto;
 }
 
-/* Padding */
+/* Padding
+    สำหรับ Block box มีผลทั้งแนวตั้งและนอน แถมยังมีผลต่อ content หรือ element อื่นๆรอบข้าง
+    สำหรับ Inline box มีผลทั้งแนวตั้งและนอน แต่เมื่อขยายแล้วจะไม่มีผลต่อสิ่งรอบข้างเลย(ขยายไปก็ทับ ไม่ได้ไปบีบหรือดันรอบข้าง)
+*/
 padding {
     padding: 10px 10px 5px;
     /*  unit : px, pt, cm, em, %, etc
