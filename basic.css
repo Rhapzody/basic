@@ -1,3 +1,15 @@
+* { 
+    /* THIS RULE SET IS RESET CSS */
+    /* *คือ universal selector */
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    /* 
+        box model ประกอบด้วย content padding border ไม่รวม outline และ margin
+        ปกติ box-sizing : content-box; >> width & height จะหมายถึงส่วน content เท่านั้น
+        แต่ box-sizing: border-box; >> width & height จะหมายถึง content+padding+border
+    */
+}
 /* colors
     name >> red
     RGB >> rgb(255,0,0)
