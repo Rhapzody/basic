@@ -165,3 +165,74 @@ width, height {
             *not include padding margin border
     */
 }
+
+text, font {
+    color: blue;
+    /* For text color */
+    text-align: center;
+    /* 
+        use : ใช้จัดtextในelementนั้นๆ
+        default : left
+        custom : left, center, right, justify >> แผ่ให้เต็ม box
+    */
+    /* vertical-align: (baseline|length|sub|super|top|text-top|middle|bottom|text-bottom|initial|inherit); */
+    text-decoration: none;
+    /*
+        default : none
+        custom : none|underline|overline|line-through|initial|inherit
+    */
+    text-transform: none;
+    /*
+        default : none
+        custom : none|capitalize|uppercase|lowercase|initial|inherit
+    */
+    text-indent: 10px;
+    /* use : indent first line in block */
+    letter-spacing: 2px;
+    /* space between letter */
+    line-height: 2;
+    /*  use : space between line
+        default : normal
+        custom : normal|number|length|initial|inherit
+            number > multiply current font size
+            length > px, em, pt, cm, %, etc.
+    */
+    word-spacing: 10px;
+     /* 
+        use : space between words
+        default : normal
+        custom : normal|length|initial|inherit;
+            length > px, em, pt, cm, %, etc.
+     */
+     text-shadow: 2px 2px black;
+     /* use : x y color
+        default : none
+        custom : h-shadow v-shadow blur-radius color|none|initial|inherit
+     */
+     text-overflow: clip;
+     /* use : ใช้เมื่อ text ล้น block
+        default : clip
+        custom : clip|ellipsis|string|initial|inherit;
+            ellipsis > เติม ... ต่อท้าย
+            string > ใส่สตริงเป็น property value แล้วจะใช้สตริงนั้นแสดงแทน
+     */
+
+     font-family: "font 1" font2 font3;
+     font-size: 2em;
+     /*
+        default : normal;
+        custom : medium|xx-small|x-small|small|large|x-large|xx-large|smaller|larger|length|initial|inherit;
+            length > px, em, pt, cm, %, etc.
+     */
+     font-weight: bold;
+     /*
+        default : normal
+        custom : normal|bold|bolder|lighter|number|initial|inherit
+            number > 100|200|300| ... *400 is normal
+     */
+     font-style: italic;
+     /*
+        default : normal
+        custom :  normal|italic|oblique|initial|inherit
+     */
+}
