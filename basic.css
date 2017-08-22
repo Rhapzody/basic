@@ -236,3 +236,92 @@ text, font {
         custom :  normal|italic|oblique|initial|inherit
      */
 }
+link, a:link, a:visited, a:hover, a:active {
+    /*
+        //add style when...
+        :link >> default
+        :visited >> เคยกดไปแล้ว
+        :hover >> เอาเมาส์มาวาง
+        :active >> โดนคลิก
+    */
+    cursor: default;
+}
+cursor {
+    cursor: default;
+    /*
+        use : ใช้เปลี่ยน cursor เวลาที่เอามเมาส์ไปชี้ที่ element นั้นๆ
+        default : default
+        custom : auto,crosshair,default,e-resize,help,move,n-resize,ne-resize,nw-resize,pointer,
+            progress,s-resize,se-resize,sw-resize,text,w-resize,wait,
+    */
+}
+
+list, ul, ol {
+    list-style-type: none;
+    /*
+        Type
+        For all : none, inherit
+        For ul : circle, disc, square
+        For ol : armenian, cjk-ideographic, decimal, decimal-leading-zero, georgian, hebrew, hiragana, hiragana-iroha, katakana, katakana-iroha
+                ,lower-alpha, lower-greek, lower-latin, lower-roman, upper-alpha, upper-latin, upper-roman
+    */
+    list-style-position: outside;
+    /*
+        use : กำหนดตำแหน่งของสัญลักษณ์หน้า list
+        default : outside >> อยู่ข้างนอก border ของ li
+        custom : inside >> อยู่ใน border ของ li , initial, inherit
+    */
+    list-style-image: url('sqpurple.gif');
+    /*
+        use : ใช้รูปแทน style list
+        default : none
+        custom : initial, inherit, url('path/.gif, .jpg, .png, ...')
+    */
+}
+
+ /* THE TABLE !!! */
+ table {
+     empty-cells: hide;
+     /* use : ใช้จัดการกับ cell (th, td) ที่ไม่มีข้อมูลอะไรข้างใน
+        default : show
+        custom : show, hide, initial, inherit
+     */
+    table-layout: fixed;
+    /*  use : จัดการขนาดของ cell, fixed >> ห้ามขยับ, auto >> ขยายตาม content
+        default : auto
+        custom : fixed, initail, inherit
+    */
+    border-spacing: 2px; /* default : 2px*/
+    border-collapse: collapse;
+    /* use : ใช้ยุบรวม border ของ table, th, td ไว้ด้วยกัน
+       default : separate
+       custom : separate|collapse|initial|inherit
+    */
+ }
+caption {
+    caption-side: bottom;
+    /*  use : ใช้สำหรับจัดวาง caption ของ table
+        default : top
+        custom : top, bottom, initail, inherit
+    */
+}
+/* TABLE EXAMPLE!!! */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+table, th, td {
+   border: 1px solid black;
+}
+th, td {
+    height: 20px;
+    text-align: center;
+    padding: 10px;
+    color: red;
+}
+tr:hover {
+    background-color: #f5f5f5
+}
+tr:nth-child(odd), tr:nth-last-child(), tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
