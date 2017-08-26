@@ -325,3 +325,93 @@ tr:hover {
 tr:nth-child(odd), tr:nth-last-child(), tr:nth-child(even) {
     background-color: #f2f2f2;
 }
+
+/* position */
+position {
+    position: static;
+    /*  Default
+        จัดตาม behavior และ float ตามปกติของ element
+        top bottom left right ไม่ส่งผล
+        ส่งผลกับ element อื่นๆรอบข้างเสมอ
+    */
+    position: relative;
+    /* 
+        ใช้ควบคู่กับ top bottom left right
+        โดยจะเลื่อนโดยยึดจากตำแหน่งเดิมเมื่อ element นั้นวางตัวตามปกติ
+        เมื่อเลื่อน จะไม่ส่งผลต่อ element อื่นๆ
+    */
+    position: fixed;
+    /* 
+        ใช้ควบคู่กับ top bottom left right
+        ยึดตำแหน่งจาก viewport(ขอบของ browser), scroll ไม่ส่งผลต่อ element
+        การเคลื่อนย้าย เลื่อนตำแหน่ง ไม่ส่งผลต่อ element อื่นๆ 
+    */
+    position: absolute;
+    /* 
+        ใช้ควบคู่กับ top bottom left right
+        ยึดตำแหน่งจาก nearest ancestor element(ขอบของ element พ่อ), scroll ส่งผลตามปกติ
+        การเคลื่อนย้าย เลื่อนตำแหน่ง ไม่ส่งผลต่อ element อื่นๆ
+        *body element can be parent element
+    */
+    /* Overlapping element */
+    z-index: -1;
+    /* 
+        use : สำหรับกำหนดลำดับการซ้อนกัน
+        default : auto >> ลูกอยู่บน พ่ออยู่ล่าง
+        custom : number >> เลขใครมากกว่า คนนั้นอยู่หน้า, ถ้าเลขเท่ากัน ลูกอยู่หน้า
+            initial, inherit
+    */
+    /* absolute fixed relative ถ้าไม่ได้กำหนด top left bottom right ก็จะทำตัวเหมือน static 
+        คือเรียงตัวตามลำดับของ element แต่ element อื่นๆที่อยู่ถัดไปจะ overlap 
+        สรุป ไม่overlapกับelementก่อนหน้าแต่overlapกับelementที่มาต่อหลัง
+    */
+}
+
+/* Overflow ใช้สำหรับ clip content หรือใส่ scroll bar เวลาที่เนื้อหาล้นขอบเขตของ element ที่กำหนด */
+overflow {
+    /* ใช้ได้กับ Block box ที่ระบุ height เท่านั้น */
+    overflow: visible;
+    /*  use :  Overflow ใช้สำหรับ clip content หรือใส่ scroll bar เวลาที่เนื้อหาล้นขอบเขตของ element ที่กำหนด
+        default : visible >> ถ้าล้น ก็ปล่อยให้ล้นไปเลย
+        custom : hidden >> ตัดส่วนที่ล้น ซ่อนส่วนที่ล้นให้มองไม่เห็น,
+                scroll >> ตัดส่วนที่ล้น แต่เพิ่มscrollให้สามารถเลื่อนดูได้ แต่ถ้าไม่ล้นก็มีscrollอยู่ดี
+                auto >> เหมือน scroll แต่จะเพิ่ม scroll bar ก็ต่อเมื่อล้นเท่านั้น
+    */
+    overflow-x: visible;
+    overflow-y: visible;
+    /* ระบุ overflow property ให้เฉพาะแกนที่กำหนด */
+}
+
+float, clear {
+    float: left;
+    /*  use : ทำให้ element นั้นลอยไปชิดซ้ายหรือขวา ถ้า element ที่อยู่ถัดไปทำการ floatด้วย elementนั้นก็จะเรียงต่อๆกันไป
+        defaul : none
+        custom : left, right, initial, inherit
+    */
+    /* ปัญหาที่เกิด */
+    /* 
+        1.สมมติว่า element1 float:left แต่ element2 อยู่ถัดจาก element1 แต่ไม่ได้ float element2 จะwrapหรือห่อ
+            หุ้ม element1 แก้ไขโดยใช้ clear
+    */
+    clear: left;
+    /*  use : ใช้กำหนดว่าข้างไหนจะต้องไม่มีelementลอยอยู่ 
+        default : none
+        custom : none|left|right|both|initial|inherit
+    */
+    /* 
+        2.สมมติว่า element1 float:left ภายใต้ element2, element2's border จะไม่สนใจส่วนสูงของ element1
+            เพื่อให้สนใจส่วนสูง ใช้ 
+    */
+    overflow: auto;
+    /* ปัญหาทั้งหมดนี้ แก้ได้ด้วย */
+    display: inline-block;
+    /* จบ */
+}
+
+/* Opacity */
+img, opacity {
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+    /* use rgba */
+    background: rgba(19, 62, 20, 0.50)
+}
