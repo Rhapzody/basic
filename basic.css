@@ -87,9 +87,12 @@ p::before, p::after {
 }
 
 /* colors
+    RED GREEN BLUE
     name >> red
-    RGB >> rgb(255,0,0)
+    RGB >> rgb(255,0,0) RED GREEN BLUE 0-255
     RGBA >> rgba(255,0,0,0.5)
+    HSL >> hsl(20, 100%, 50%) >> H(สี):0-360, S(ความชัดเจน):0-100%, L(ความสว่าง):0-100%
+    HSLA >> hsla(20, 100%, 50%, 0.3)
     GEX >> #ff0000
 */
 /* Backgrounds */
@@ -121,6 +124,33 @@ background {
     /* short */
     background: bg-color bg-image position/bg-size bg-repeat 
         bg-origin bg-clip bg-attachment initial or inherit;
+    /* Background in css3 */
+    background-clip: border-box;
+    /*  use : ใช้  clip จำกัดขอบเขตของ background
+        default : border-box >> ตัดรูปไม่ให้เกินขอบ
+        custom : padding-box >> ตัดรูปไม่ให้เกิน padding, content-box >> ตัดรูปไม่ให้เกิน content, inherit, initial
+    */
+    background-origin: padding-box;
+    /*  use : ใช้กำหนดตำแหน่งเริ่มต้นของรูป background
+        default : padding-box >> รูปเริ่มต้นวาดจาก padding zone
+        custom : content-box, border-box, inherit, initial
+    */
+    background-size: 20px 30px;
+    /*  use : ใช้กำหนดขนาดของรูปพื้นหลัง (สามารถใช้ -webkit-, -moz-, -o-)
+        default : auto >> ตามขนาดเดิมของรูป
+        custom : 20px 30px หรือ 50% 60% (กว้าง-สูง ใช้หน่วยอื่นก็ได้),
+                cover >> ปรับขนาดภาพพื้นหลังให้ใหญ่เท่าที่เพียงพอจะครอบคลุมพื้นที่ (รูปอาจจะเลยขอบและถูกclip),
+                contain >> ปรับขนาดภาพพื้นหลังให้ใหญ่เท่าที่จะทำได้ (fitพอดี รูปจะไม่เลยขอบ ไม่ถูกตัด ),
+                inherit, initial
+    */
+
+    /*  สามารถใส่รูปพื้นหลังหลายๆรูปได้ เช่น
+        #example1 {
+            background-image: url(img_flwr.gif), url(paper.gif);
+            background-position: right bottom, left top;
+            background-repeat: no-repeat, repeat;
+        }
+    */
 }
 
 /* Border */
@@ -289,7 +319,7 @@ text, font {
      */
      text-overflow: clip;
      /* use : ใช้เมื่อ text ล้น block
-        default : clip
+        default : clip >> ตัดดื้อๆ
         custom : clip|ellipsis|string|initial|inherit;
             ellipsis > เติม ... ต่อท้าย
             string > ใส่สตริงเป็น property value แล้วจะใช้สตริงนั้นแสดงแทน
@@ -313,7 +343,41 @@ text, font {
         default : normal
         custom :  normal|italic|oblique|initial|inherit
      */
+     word-break: keep-all;
+     /* use : ใช้ตัดคำเพื่อขึ้นบรรทัดใหม่เวลาที่ string content ล้นขอบข้าง */
+     /* Default : normal >> ตัดตามปกติ ตัดตรงเว้นวรรค */
+     /* Custom : break-all >> ตัดกลางคำได้เลย จะไม่ปล่อยให้ล้น เช่นภาษาไทยที่เขียนแบบไม่เว้นวรรคเลย,
+                keep-all >> เหมือนกับ normal แต่ถ้าคำยาวๆมากแล้วจำเป็นต้องตัด จะไม่ปล่อยให้ล้นขอบ แต่จะมองหาสัญลักษณ์เช่น - แล้วตัดคำตรงนั้นเพื่อขึ้นบรรทัดใหม่           
+     */
+     word-wrap: normal; /* ไม่อนุญาติให้ตัดขึ้นบรรทัดใหม่กลางคำได้ */
+     word-wrap: break-word; /* อนุญาติให้ตัดขึ้นบรรทัดใหม่กลางคำได้ */
 }
+/* Font-face */
+@font-face {
+    /* สำหรับคนที่อยากจะเปลี่ยน font โดยไม่ใช้ CDN */
+    /* ตั้งชื่อ */
+    font-family: my-font;
+    /* ที่อยู่ไฟล์ */
+    src: url(sansation_light.woff);
+}
+@font-face{
+    /* ชื่อเดิม */
+    font-family: my-font;
+    src: url(sansation_bold.woff);
+    font-weight: bold; /* bold, normal, 100-900 */
+}
+@font-face{
+    /* ชื่อเดิม */
+    font-family: my-font;
+    src: url(sansation_italic.woff);
+    font-style: italic; /* italic, normal, oblique */
+}
+/* นำไปใช้ */
+div {
+    font-family: my-font;
+    /* Go to https://www.w3schools.com/css/css3_fonts.asp for more detail */
+}
+
 link, a:link, a:visited, a:hover, a:active {
     /*
         //add style when...
@@ -450,7 +514,7 @@ position {
             initial, inherit
     */
     /* absolute fixed ถ้าไม่ได้กำหนด top left bottom right ก็จะทำตัวเหมือน static 
-        คือเรียงตัวตามลำดับของ element แต่ element อื่นๆที่อยู่ถัดไปจะ overlap 
+        คือเรียงตัวตามลำดับของ element แต่ element อื่นๆที่อยู่ถัดไป(รวมถึง parent's bottom border)จะ overlap 
         สรุป ไม่overlapกับelementก่อนหน้าแต่overlapกับelementที่มาต่อหลัง
     */
 }
@@ -497,9 +561,99 @@ float, clear {
 }
 
 /* Opacity */
-img, opacity {
+img, div, opacity {
     opacity: 0.5;
     filter: alpha(opacity=50); /* For IE8 and earlier */
     /* use rgba */
     background: rgba(19, 62, 20, 0.50)
+}
+/* Filter */
+img {
+    filter: none;
+    -webkit-filter:none;
+    /*  use : ใส่ฟิลเตอร์ให้ img
+        default : none
+        custom : blur(px), brightness(%), contrast(%), drop-shadow(h-shadow v-shadow blur spread color) >> เหมือน box-shadow,
+            grayscale(%), hue-rotate(0-360deg), invert(%), sepia(%)
+            100% is default
+    */
+}
+/* Gradients  */
+Gradients {
+    /* การไล่สี ใช้แทน image */
+    /* Linear */
+    background-image: linear-gradient(direction, color-sto-1, color-stop-2, color-stop-n);
+    /* Go to https://www.w3schools.com/css/css3_gradients.asp for more detail */
+}
+
+shadow {
+    /* Text Shadow */
+    text-shadow: 2px 2px 5px rgba(red, green, blue, alpha); /* x y blur-radius color */
+    /* Multiple text shadow */
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+    
+    /* Box Shadow */
+    -moz-box-shadow: 10px 10px 5px grey;
+    -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5); /* x y blur-radius color */
+    /* Multiple box shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+
+/* Transform! */
+transform {
+    transform: none,transform-functions,initial,inherit;
+    /* -webkit-, -ms-, -moz-, -o-
+        use : ใช้เปลี่ยนแปลง เคลื่อนย้าย เช่น ย้ายตำแหน่ง หมุุน หด ขยาย ...
+        default : none
+        transform-functions : translate(x,y) >> เลื่อนตำแหน่ง x y เช่น(10px, 5px) ถ้า x y เป็น % จะหมายถึง % width height ของ element ตัวมันเอง,
+                            scale(x,y) >> ขยายขนาด x y เป็นจำนวนเท่า เช่น(2, 3),
+                            rotate(deg) >> หมุน (-180deg), ...
+        Go to https://www.w3schools.com/cssref/css3_pr_transform.asp for more detail
+    */
+}
+
+/* Transition! */
+transition {
+    /* ใช้ setting element เมื่อมีการเปลี่ยนแปลง */
+    /* -webkit-, -moz-, -o- */
+    transition: property duration timing-function delay;
+    /* ถ้าแยกส่วน ได้หลายๆ Property ตามลำดับ*/
+    transition-property: property1, property2, propertyN;
+    transition-duration: duration1, duration2, durationN;
+    transition-timing-function: timing-function1, timing-function2, timing-functionN;
+    transition-delay: delay1, delay2, delayN;
+     /*
+        property : default={all}, custom={with, height, color, etc.}
+        duration : default={0s}, custom={xs}
+        timing-function : default={ease}, custom={linear,ease,ease-in,ease-out,ease-in-out,step-start,step-end,steps(int,start|end),cubic-bezier(n,n,n,n),initial,inherit}
+        delay : default={0s}, custom={xs}
+     */
+}
+
+/* Animation!! */
+/*  กำหนดชื่อ และ property ในแต่ละ step */
+@keyframes example1 {
+    from {background-color: red;}
+    to {background-color: yellow;}
+}
+@keyframes example2 {
+    0%   {background-color: red;}
+    25%  {background-color: yellow;}
+    50%  {background-color: blue;}
+    100% {background-color: green;}
+}
+/* นำ keyframs ไปใช้ทำให้ element เกิด animation */
+div {
+    /* -webkit-, -moz-, -o- */
+    animation: name duration timing-function delay iteration-count direction fill-mode play-state;
+    animation-name: example1; /* Keyframs name */
+    animation-delay: delay; /* default : 0s */
+    animation-direction: direction; /* default={normal}, custom={normal,reverse,alternate,alternate-reverse} */
+    animation-duration: duration; /* default : 0s */
+    animation-fill-mode: fill-mode; /* default={none}, custom={none,forwards,backwards,both} */
+    animation-iteration-count: iteration-count; /* default={1}, custom={1,2,3,4,...,n} */
+    animation-play-state: play-state; /* default={running}, custom={paused,running} */
+    animation-timing-function: timing-function; /*default={ease}, custom={linear,ease,ease-in,ease-out,ease-in-out,step-start,step-end,steps(int,start|end),cubic-bezier(n,n,n,n)}*/
+    /* Go to https://www.w3schools.com/css/css3_animations.asp for more information */
 }
