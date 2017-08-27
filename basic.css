@@ -10,9 +10,86 @@
         แต่ box-sizing: border-box; >> width & height จะหมายถึง content+padding+border
     */
 }
+
+/* Selector!! */
+Selector {
+    /* 
+        .class >> eg. .new-btn {}
+        #id >> eg. #div1 {}
+        tags >> eg. div {}
+        * >> select all element in DOM
+    */
+    /*  Combination!
+        div, p >> เลือก div และ p
+        a.mylink >> เลือก tag a ที่ class = "mylink"
+        div p >> เลือก tag p ที่อยู่ภายใต้ tag div (ไม่จำเป็นต้องเป็นพ่อลูก แค่เป็นบรรพบุรุษก็พอ)
+        div > p >> เลือก p ที่เป็นลูกของ div
+        ul + h3 >> เลือก h3 1ตัวที่อยู่ถัดจาก ul (sibling)
+        ul ~ h3 >> เลือก h3 ทุกตัวที่อยู่ถัดจาก ul (siblings)
+    */
+    /*  Attr selector! 
+        [id] >> เลือก element ที่มี id เป็น attribute
+        [id="my-address"] >> เลือก element ที่มี id="my-address" เป็น attribute+value
+        [id$="ess"] >> เลือก element ที่ value ของ id ลงท้ายด้วย "ess"
+        [id|="my"] >> เลือก element ที่ value ของ id ขึ้นต้นด้วย "my"
+        [id^="L"] >> เลือก element ที่ value ของ id ขึ้นต้นด้วย "L"
+        [title~="new"] >> เลือก element ที่ value ของ title มีคำว่า "new"
+        [title*="new"] >>  เลือก element ที่ value ของ title มีส่วนของstringเป็น "new"
+    */
+    /*  All CSS Pseudo Classes!
+        Selector	        Example	            Example description
+        :active	            a:active	        Selects the active link
+        :checked	        input:checked	    Selects every checked <input> element
+        :disabled	        input:disabled	    Selects every disabled <input> element 
+        :empty	            p:empty	            Selects every <p> element that has no children
+        :enabled	        input:enabled	    Selects every enabled <input> element
+        :first-child	    p:first-child	    Selects every <p> elements that is the first child of its parent
+        :first-of-type  	p:first-of-type	    Selects every <p> element that is the first <p> element of its parent
+        :focus	            input:focus	        Selects the <input> element that has focus
+        :hover	            a:hover	            Selects links on mouse over
+        :in-range	        input:in-range	    Selects <input> elements with a value within a specified range
+        :invalid	        input:invalid	    Selects all <input> elements with an invalid value
+        :lang(language)	    p:lang(it)	        Selects every <p> element with a lang attribute value starting with "it"
+        :last-child	        p:last-child	    Selects every <p> elements that is the last child of its parent
+        :last-of-type	    p:last-of-type	    Selects every <p> element that is the last <p> element of its parent
+        :link	            a:link	            Selects all unvisited links
+        :not(selector)	    :not(p)	            Selects every element that is not a <p> element
+        :nth-child(n)	    p:nth-child(2)	    Selects every <p> element that is the second child of its parent
+        :nth-last-child(n)	p:nth-last-child(2)	Selects every <p> element that is the second child of its parent, counting from the last child
+        :nth-last-of-type(n)p:nth-last-of-type(2)Selects every <p> element that is the second <p> element of its parent, counting from the last child
+        :nth-of-type(n)	    p:nth-of-type(2)	Selects every <p> element that is the second <p> element of its parent
+        :only-of-type	    p:only-of-type	    Selects every <p> element that is the only <p> element of its parent
+        :only-child	        p:only-child	    Selects every <p> element that is the only child of its parent
+        :optional	        input:optional	    Selects <input> elements with no "required" attribute
+        :out-of-range	    input:out-of-range	Selects <input> elements with a value outside a specified range
+        :read-only	        input:read-only	    Selects <input> elements with a "readonly" attribute specified
+        :read-write	        input:read-write	Selects <input> elements with no "readonly" attribute
+        :required	        input:required	    Selects <input> elements with a "required" attribute specified
+        :root	            root	            Selects the document's root element
+        :target	            #news:target	    Selects the current active #news element (clicked on a URL containing that anchor name)
+        :valid	            input:valid	        Selects all <input> elements with a valid value
+        :visited	        a:visited	        Selects all visited links
+    */
+    /*  All CSS Pseudo Elements!
+        Selector	        Example	            Example description
+        ::after	            p::after	        Insert content after every <p> element
+        ::before	        p::before	        Insert content before every <p> element
+        ::first-letter	    p::first-letter	    Selects the first letter of every <p> element
+        ::first-line	    p::first-line	    Selects the first line of every <p> element
+        ::selection	        p::selection	    Selects the portion of an element that is selected by a use
+    */
+    
+}
+p::before, p::after {
+    content: "asdfg";
+    content: url('path.svg');
+    /* แทรก content ก่อนหน้า/ต่อหลัง จาก content ของ p */
+}
+
 /* colors
     name >> red
     RGB >> rgb(255,0,0)
+    RGBA >> rgba(255,0,0,0.5)
     GEX >> #ff0000
 */
 /* Backgrounds */
@@ -127,6 +204,7 @@ margin {
     /* To horizontally center the element within its container. use */
     margin: auto; 
     margin: 10px auto;
+    /* Vertical center use padding */
 }
 
 /* Padding
@@ -335,4 +413,93 @@ display, visibility {
     visibility: hidden; /* มีอยู่ แต่มองไม่เห็น */
     visibility: visible; /* มองเห็นปกติ Default */
     visibility: collapse; /* ทำให้ tr เป็น hidden */
+}
+/* position */
+position {
+    position: static;
+    /*  Default
+        จัดตาม behavior และ float ตามปกติของ element
+        top bottom left right ไม่ส่งผล
+        ส่งผลกับ element อื่นๆรอบข้างเสมอ
+    */
+    position: relative;
+    /* 
+        ใช้ควบคู่กับ top bottom left right
+        โดยจะเลื่อนโดยยึดจากตำแหน่งเดิมเมื่อ element นั้นวางตัวตามปกติ
+        เมื่อเลื่อน จะไม่ส่งผลต่อ element อื่นๆ
+    */
+    position: fixed;
+    /* 
+        ใช้ควบคู่กับ top bottom left right
+        ยึดตำแหน่งจาก viewport(ขอบของ browser), scroll ไม่ส่งผลต่อ element
+        การเคลื่อนย้าย เลื่อนตำแหน่ง ไม่ส่งผลต่อ element อื่นๆ 
+    */
+    position: absolute;
+    /* 
+        ใช้ควบคู่กับ top bottom left right
+        ยึดตำแหน่งจาก nearest ancestor element(ขอบของ element พ่อ), scroll ส่งผลตามปกติ
+        การเคลื่อนย้าย เลื่อนตำแหน่ง ไม่ส่งผลต่อ element อื่นๆ
+        *body element can be parent element
+    */
+    /* Overlapping element */
+    z-index: -1;
+    /* 
+        use : สำหรับกำหนดลำดับการซ้อนกัน
+        default : auto >> ลูกอยู่บน พ่ออยู่ล่าง
+        custom : number >> เลขใครมากกว่า คนนั้นอยู่หน้า, ถ้าเลขเท่ากัน ลูกอยู่หน้า
+            initial, inherit
+    */
+    /* absolute fixed ถ้าไม่ได้กำหนด top left bottom right ก็จะทำตัวเหมือน static 
+        คือเรียงตัวตามลำดับของ element แต่ element อื่นๆที่อยู่ถัดไปจะ overlap 
+        สรุป ไม่overlapกับelementก่อนหน้าแต่overlapกับelementที่มาต่อหลัง
+    */
+}
+
+/* Overflow ใช้สำหรับ clip content หรือใส่ scroll bar เวลาที่เนื้อหาล้นขอบเขตของ element ที่กำหนด */
+overflow {
+    /* ใช้ได้กับ Block box ที่ระบุ height เท่านั้น */
+    overflow: visible;
+    /*  use :  Overflow ใช้สำหรับ clip content หรือใส่ scroll bar เวลาที่เนื้อหาล้นขอบเขตของ element ที่กำหนด
+        default : visible >> ถ้าล้น ก็ปล่อยให้ล้นไปเลย
+        custom : hidden >> ตัดส่วนที่ล้น ซ่อนส่วนที่ล้นให้มองไม่เห็น,
+                scroll >> ตัดส่วนที่ล้น แต่เพิ่มscrollให้สามารถเลื่อนดูได้ แต่ถ้าไม่ล้นก็มีscrollอยู่ดี
+                auto >> เหมือน scroll แต่จะเพิ่ม scroll bar ก็ต่อเมื่อล้นเท่านั้น
+    */
+    overflow-x: visible;
+    overflow-y: visible;
+    /* ระบุ overflow property ให้เฉพาะแกนที่กำหนด */
+}
+
+float, clear {
+    float: left;
+    /*  use : ทำให้ element นั้นลอยไปชิดซ้ายหรือขวา ถ้า element ที่อยู่ถัดไปทำการ floatด้วย elementนั้นก็จะเรียงต่อๆกันไป
+        defaul : none
+        custom : left, right, initial, inherit
+    */
+    /* ปัญหาที่เกิด */
+    /* 
+        1.สมมติว่า element1 float:left แต่ element2 อยู่ถัดจาก element1 แต่ไม่ได้ float element2 จะwrapหรือห่อ
+            หุ้ม element1 แก้ไขโดยใช้ clear
+    */
+    clear: left;
+    /*  use : ใช้กำหนดว่าข้างไหนจะต้องไม่มีelementลอยอยู่ 
+        default : none
+        custom : none|left|right|both|initial|inherit
+    */
+    /* 
+        2.สมมติว่า element1 float:left ภายใต้ element2, element2's border จะไม่สนใจส่วนสูงของ element1
+            เพื่อให้สนใจส่วนสูง ใช้ 
+    */
+    overflow: auto;
+    /* ปัญหาทั้งหมดนี้ แก้ได้ด้วย */
+    display: inline-block;
+    /* จบ */
+}
+
+/* Opacity */
+img, opacity {
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+    /* use rgba */
+    background: rgba(19, 62, 20, 0.50)
 }
