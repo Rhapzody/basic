@@ -657,3 +657,4 @@ div {
     animation-timing-function: timing-function; /*default={ease}, custom={linear,ease,ease-in,ease-out,ease-in-out,step-start,step-end,steps(int,start|end),cubic-bezier(n,n,n,n)}*/
     /* Go to https://www.w3schools.com/css/css3_animations.asp for more information */
 }
+/* Media query, Flex box ??? */
