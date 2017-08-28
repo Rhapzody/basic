@@ -91,9 +91,9 @@ p::before, p::after {
     name >> red
     RGB >> rgb(255,0,0) RED GREEN BLUE 0-255
     RGBA >> rgba(255,0,0,0.5)
-    HSL >> hsl(20, 100%, 50%) >> H(สี):0-360, S(ความชัดเจน):0-100%, L(ความสว่าง):0-100%
+    HSL >> hsl(20, 100%, 50%) >> H(สี):0-360, S(ความชัดเจนสี):0-100%, L(ความสว่าง):0-100%
     HSLA >> hsla(20, 100%, 50%, 0.3)
-    GEX >> #ff0000
+    HEX >> #ff0000
 */
 /* Backgrounds */
 background {
@@ -501,7 +501,9 @@ position {
     position: absolute;
     /* 
         ใช้ควบคู่กับ top bottom left right
-        ยึดตำแหน่งจาก nearest ancestor element(ขอบของ element พ่อ), scroll ส่งผลตามปกติ
+        ยึดตำแหน่งจาก page(ขอบของ  DOM) 
+        แต่!!จะยึดตำแหน่งจาก nearest ancestor element(ขอบของ element พ่อ) เมื่อElementพ่อเป็นRelative, 
+        scroll ส่งผลตามปกติ
         การเคลื่อนย้าย เลื่อนตำแหน่ง ไม่ส่งผลต่อ element อื่นๆ
         *body element can be parent element
     */
@@ -514,7 +516,7 @@ position {
             initial, inherit
     */
     /* absolute fixed ถ้าไม่ได้กำหนด top left bottom right ก็จะทำตัวเหมือน static 
-        คือเรียงตัวตามลำดับของ element แต่ element อื่นๆที่อยู่ถัดไป(รวมถึง parent's bottom border)จะ overlap 
+        คือเรียงตัวตามลำดับของ element แต่ element อื่นๆที่อยู่ถัดไป(รวมถึง parent's bottom border(แก้ด้วย overflow:auto))จะ overlap 
         สรุป ไม่overlapกับelementก่อนหน้าแต่overlapกับelementที่มาต่อหลัง
     */
 }
@@ -633,6 +635,7 @@ transition {
 
 /* Animation!! */
 /*  กำหนดชื่อ และ property ในแต่ละ step */
+/* เมื่อ animate จะไม่ส่งผลต่อสิ่งรอบข้าง */
 @keyframes example1 {
     from {background-color: red;}
     to {background-color: yellow;}
