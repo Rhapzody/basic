@@ -343,14 +343,15 @@ text, font {
         default : normal
         custom :  normal|italic|oblique|initial|inherit
      */
-     word-break: keep-all;
+     word-break: keep-all; /*<<<< ยังไม่เคลียร์ word-break ไว้ศึกษาอีกรอบ*/
      /* use : ใช้ตัดคำเพื่อขึ้นบรรทัดใหม่เวลาที่ string content ล้นขอบข้าง */
      /* Default : normal >> ตัดตามปกติ ตัดตรงเว้นวรรค */
      /* Custom : break-all >> ตัดกลางคำได้เลย จะไม่ปล่อยให้ล้น เช่นภาษาไทยที่เขียนแบบไม่เว้นวรรคเลย,
                 keep-all >> เหมือนกับ normal แต่ถ้าคำยาวๆมากแล้วจำเป็นต้องตัด จะไม่ปล่อยให้ล้นขอบ แต่จะมองหาสัญลักษณ์เช่น - แล้วตัดคำตรงนั้นเพื่อขึ้นบรรทัดใหม่           
      */
-     word-wrap: normal; /* ไม่อนุญาติให้ตัดขึ้นบรรทัดใหม่กลางคำได้ */
-     word-wrap: break-word; /* อนุญาติให้ตัดขึ้นบรรทัดใหม่กลางคำได้ */
+     word-wrap: normal; /* wrap ตาม behavior ปกติ แต่ไม่อนุญาติให้ตัดขึ้นบรรทัดใหม่กลางคำได้*/
+     word-wrap: break-word; /*wrap ตาม behavior ปกติ และอนุญาติให้ตัดขึ้นบรรทัดใหม่กลางคำได้ */
+     white-space: nowrap; /* Disable การ wrap ตาม behavior ปกติ */ 
 }
 /* Font-face */
 @font-face {
