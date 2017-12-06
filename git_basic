@@ -25,8 +25,8 @@ git add -u // ทำการ  staging ไฟล์ทุกๆไฟล์ท�
 git add -A // ทำการ tracking และ staging ไฟล์ทุกๆไฟล์ ยกเว้นไฟล์ที่ถูกignore
 git add . // staging ทุกไฟล์ที่มีการเปลี่ยนแปลง
 git rm <file> // delete and untrack file
-git rm --cached <file> // untrack file
-git reset <file> // unstage file
+git rm --cached <file> // unstage file
+git reset <file> // untrack file
 
 git commit -m "note" // snapshot ไฟล์ทุกไฟล์ที่อยู่ใน index ( อยู่ในสถานะ staged)
 git commit --amend // แก้ไขcommitล่าสุดโดยรวมกับการเปลี่ยนแปลงล่าสุด
